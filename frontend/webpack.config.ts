@@ -80,7 +80,7 @@ const webpackConfig = (env): Configuration => ({
   devServer: {
     // docker cant use localhost here
     host: '0.0.0.0',
-    port: 3010,
+    port: 3011,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },

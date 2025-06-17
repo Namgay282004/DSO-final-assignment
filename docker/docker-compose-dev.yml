@@ -11,6 +11,7 @@ services:
     volumes:
       # Where our data will be persisted
       - database-data:/data/postgres
+      - ./config:/app/config
     ports:
       # <Port exposed> : <Port running inside container>
       - "2345:5432"
@@ -59,7 +60,7 @@ services:
         - "../frontend/sync-package-lock:/app/sync-package-lock"
         - "../frontend/src:/app/src"
     ports:
-      - "3010:3010"
+      - "3011:3011"
     command: "npm run develop"
 volumes:
   database-data:
