@@ -26,9 +26,6 @@
 #         run: |
 #          #refer the docker compose file and dockerfiles from the repository
 
-
-
-
 name: Docker Build and Push
 
 on:
@@ -50,19 +47,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push Backend
+      - name: Build and Push Backend (Dev)
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bmi-backend:latest ./backend
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/bmi-backend:latest
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bmi-backend-dev:latest -f backend/Dockerfile.dev backend
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/bmi-backend-dev:latest
 
-      - name: Build and Push Frontend
+      - name: Build and Push Frontend (Dev)
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bmi-frontend:latest ./frontend
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/bmi-frontend:latest
-
-      # Optional: only include if you are building a custom DB image
-      - name: Build and Push DB
-        if: exists('db/Dockerfile')
-        run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bmi-db:latest ./db
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/bmi-db:latest
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/bmi-frontend-dev:latest -f frontend/Dockerfile.dev frontend
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/bmi-frontend-dev:latest
