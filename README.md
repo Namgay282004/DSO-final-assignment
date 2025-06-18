@@ -113,14 +113,20 @@
       DB_URL=postgres://user:pass@db-host:5432/dbname
       ```
       ![](image/18.png)
-      
+
       ![](image/19.png)
 
     - For frontend:
       ```
-      REACT_APP_API_URL=https://your-backend.onrender.com
+      REACT_APP_API_URL=https://bmi-backend-dev-1.onrender.com
       ```
 
+      ![](image/20.png)
+
+      ![](image/21.png)
+
+      ![](image/22.png)
+    
 ## Environment Variables
 
 ### `.env`
