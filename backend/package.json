@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "start": "npm run build && node build/bin/www.js",
-    "build": "tsc",
+    "build": "react-scripts build",
     "develop": "nodemon",
     "serve": "node build/bin/www.js",
     "migrate:latest": "knex migrate:latest",
