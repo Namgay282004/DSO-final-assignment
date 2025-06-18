@@ -135,6 +135,7 @@
   - Deployed backend and frontend using Docker images from Docker Hub
   - Used Render's managed PostgreSQL DB
   - Set environment variables on Render dashboard:
+
     - For backend:
       ```
       DB_URL=postgres://user:pass@db-host:5432/dbname
@@ -146,13 +147,18 @@
       ![](image/20.png)
 
     - For frontend:
+
       ```
-      REACT_APP_API_URL=https://bmi-backend-dev-1.onrender.com
+      REACT_APP_API_URL=https://bmi-backend-dev-2.onrender.com
       ```
 
       ![](image/21.png)
 
-      ![](image/22.png)
+      ![](image/c.png)
+
+      ![](image/c1.png)
+
+
     
 ## Environment Variables
 
@@ -166,7 +172,12 @@ DATABASE_PASSWORD=password
 DATABASE_NAME=finals
 ```
 
-## Live Application:
+## Live Application(Render):
+
+- [Frontend](https://bmi-frontend-dev-7.onrender.com)
+
+- [Backend](https://bmi-backend-dev-2.onrender.com)
+
 
 
 
