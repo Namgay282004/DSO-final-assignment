@@ -521,6 +521,10 @@ const BMICalculator = () => {
 
 export default BMICalculator;
 
+
+
+
+
 // import React, { useState, useEffect } from 'react';
 
 // const BMICalculator = () => {

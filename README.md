@@ -23,14 +23,41 @@
 
 ## Stage 1: Docker Configuration
 
-- **Changes Made:**
-  - Modified Dockerfiles and `docker-compose.yml`
-  - Connected frontend, backend, and PostgreSQL with Docker network
-  - Mounted Docker volume for database persistence
+- **Create a Databse Container with Persistent Data:**
+    ```
+    docker run --name=finals -e POSTGRES_PASSWORD=password -d -v postgres_data:/var/lib/postgresql/data postgres
+    ```
+    This command creates a new container called **finals** using official PostgreSQL image, setting up a volume named **postgres_data** to persist data in the `/var/lib/postgresql/data` directory. The **-d** flag runs the container in detached mode.
 
-- **Test Configuration:**
-  - Wrote unit tests with Jest for the BMI logic
-  - Ran tests inside containers using Docker Compose
+- **Connecting to the Database:**
+    ```
+    docker exec -ti finals psql -U postgres
+    ```
+    This command connects to the **finals** container and opens a psql shell as the **postgres** user. The **-ti** flag allows interaction with the container's terminal.
+
+    ![](image/b.png)
+
+- **Creating a Table Named tasks and Inserting Data Records**
+    ```
+    postgres=# CREATE TABLE bmi_records (
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    height FLOAT,
+    weight FLOAT,
+    bmi FLOAT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    ```
+    This command creates a table named bmi_records with id, name, height, weight and bmi,then inserts a record into the table.
+
+- **Verifying Data**
+
+    ```
+    SELECT * FROM bmi_records;
+    ```
+    This command retrieves all records from the bmi_records table but it was not able to retrieve
+
+    ![](image/b1.png)
 
 ## Stage 2: Jenkins GitHub Push Automation
 
@@ -116,12 +143,12 @@
 
       ![](image/19.png)
 
+      ![](image/20.png)
+
     - For frontend:
       ```
       REACT_APP_API_URL=https://bmi-backend-dev-1.onrender.com
       ```
-
-      ![](image/20.png)
 
       ![](image/21.png)
 
