@@ -538,3 +538,252 @@ const BMICalculator = () => {
 };
 
 export default BMICalculator;
+
+// import React, { useState } from 'react';
+
+// const BMICalculator = () => {
+//   const [height, setHeight] = useState('');
+//   const [weight, setWeight] = useState('');
+//   const [bmi, setBmi] = useState(null);
+//   const [message, setMessage] = useState('');
+//   const [saved, setSaved] = useState(false);
+
+//   const getBMICategory = (bmiValue) => {
+//     if (bmiValue < 18.5) return { category: 'Underweight', color: '#3b82f6' };
+//     if (bmiValue < 25) return { category: 'Normal', color: '#10b981' };
+//     if (bmiValue < 30) return { category: 'Overweight', color: '#f59e0b' };
+//     return { category: 'Obese', color: '#ef4444' };
+//   };
+
+//   const calculateBMI = () => {
+//     const h = parseFloat(height);
+//     const w = parseFloat(weight);
+    
+//     if (!h || !w || h <= 0 || w <= 0) {
+//       setMessage('Please enter valid height and weight');
+//       return;
+//     }
+    
+//     const bmiValue = +(w / (h * h)).toFixed(1);
+//     setBmi(bmiValue);
+//     setMessage('');
+//     setSaved(false);
+//   };
+
+//   const saveBMI = () => {
+//     if (!bmi) {
+//       setMessage('Calculate BMI first');
+//       return;
+//     }
+    
+//     // In a real app, you would save to a database here
+//     // For this simplified version, we'll just show a success message
+//     setMessage('BMI saved successfully!');
+//     setSaved(true);
+//   };
+
+//   const clearForm = () => {
+//     setHeight('');
+//     setWeight('');
+//     setBmi(null);
+//     setMessage('');
+//     setSaved(false);
+//   };
+
+//   // Styles (same as before)
+//   const containerStyle = {
+//     minHeight: '100vh',
+//     background: 'linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%)',
+//     padding: '20px',
+//     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+//   };
+
+//   const cardStyle = {
+//     maxWidth: '500px',
+//     margin: '0 auto',
+//     backgroundColor: '#ffffff',
+//     borderRadius: '12px',
+//     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+//     overflow: 'hidden'
+//   };
+
+//   const headerStyle = {
+//     textAlign: 'center',
+//     padding: '30px 20px 20px'
+//   };
+
+//   const titleStyle = {
+//     fontSize: '28px',
+//     fontWeight: 'bold',
+//     color: '#1f2937',
+//     margin: '0 0 8px 0'
+//   };
+
+//   const inputContainerStyle = {
+//     display: 'grid',
+//     gap: '20px',
+//     padding: '0 20px',
+//     marginBottom: '30px'
+//   };
+
+//   const inputGroupStyle = {
+//     display: 'flex',
+//     flexDirection: 'column'
+//   };
+
+//   const labelStyle = {
+//     fontSize: '14px',
+//     fontWeight: '500',
+//     color: '#374151',
+//     marginBottom: '8px'
+//   };
+
+//   const inputStyle = {
+//     padding: '12px',
+//     border: '2px solid #e5e7eb',
+//     borderRadius: '8px',
+//     fontSize: '16px',
+//     outline: 'none',
+//     transition: 'border-color 0.2s ease'
+//   };
+
+//   const buttonContainerStyle = {
+//     display: 'flex',
+//     gap: '12px',
+//     padding: '0 20px',
+//     marginBottom: '30px'
+//   };
+
+//   const buttonStyle = (color = '#3b82f6') => ({
+//     flex: 1,
+//     padding: '12px 24px',
+//     border: 'none',
+//     backgroundColor: color,
+//     color: '#ffffff',
+//     borderRadius: '8px',
+//     fontSize: '14px',
+//     fontWeight: '500',
+//     cursor: 'pointer',
+//     transition: 'all 0.2s ease'
+//   });
+
+//   const resultStyle = {
+//     textAlign: 'center',
+//     padding: '30px 20px',
+//     backgroundColor: '#f9fafb',
+//     borderRadius: '12px',
+//     margin: '0 20px 20px'
+//   };
+
+//   const bmiValueStyle = {
+//     fontSize: '48px',
+//     fontWeight: 'bold',
+//     color: '#1f2937',
+//     marginBottom: '15px'
+//   };
+
+//   const categoryBadgeStyle = (color) => ({
+//     display: 'inline-block',
+//     padding: '8px 16px',
+//     backgroundColor: color,
+//     color: '#ffffff',
+//     borderRadius: '20px',
+//     fontSize: '16px',
+//     fontWeight: '500',
+//     marginBottom: '20px'
+//   });
+
+//   const messageStyle = (isSuccess) => ({
+//     padding: '12px',
+//     borderRadius: '8px',
+//     textAlign: 'center',
+//     margin: '0 20px 20px',
+//     backgroundColor: isSuccess ? '#d1fae5' : '#fee2e2',
+//     color: isSuccess ? '#065f46' : '#991b1b',
+//     border: `1px solid ${isSuccess ? '#a7f3d0' : '#fecaca'}`
+//   });
+
+//   return (
+//     <div style={containerStyle}>
+//       <div style={cardStyle}>
+//         <div style={headerStyle}>
+//           <h1 style={titleStyle}>BMI Calculator</h1>
+//           <p>Enter your height in meters and weight in kilograms</p>
+//         </div>
+
+//         <div style={inputContainerStyle}>
+//           <div style={inputGroupStyle}>
+//             <label style={labelStyle}>Height (m)</label>
+//             <input
+//               type="number"
+//               step="0.01"
+//               value={height}
+//               onChange={(e) => setHeight(e.target.value)}
+//               style={inputStyle}
+//               placeholder="1.75"
+//             />
+//           </div>
+//           <div style={inputGroupStyle}>
+//             <label style={labelStyle}>Weight (kg)</label>
+//             <input
+//               type="number"
+//               step="0.1"
+//               value={weight}
+//               onChange={(e) => setWeight(e.target.value)}
+//               style={inputStyle}
+//               placeholder="68.5"
+//             />
+//           </div>
+//         </div>
+
+//         <div style={buttonContainerStyle}>
+//           <button
+//             onClick={calculateBMI}
+//             style={buttonStyle()}
+//           >
+//             Calculate BMI
+//           </button>
+//           <button
+//             onClick={clearForm}
+//             style={buttonStyle('#6b7280')}
+//           >
+//             Clear
+//           </button>
+//         </div>
+
+//         {/* BMI Result */}
+//         {bmi && (
+//           <div style={resultStyle}>
+//             <div style={bmiValueStyle}>{bmi}</div>
+//             <div style={categoryBadgeStyle(getBMICategory(bmi).color)}>
+//               {getBMICategory(bmi).category}
+//             </div>
+            
+//             <div style={buttonContainerStyle}>
+//               <button
+//                 onClick={saveBMI}
+//                 disabled={saved}
+//                 style={{
+//                   ...buttonStyle('#10b981'),
+//                   opacity: saved ? 0.7 : 1,
+//                   cursor: saved ? 'default' : 'pointer'
+//                 }}
+//               >
+//                 {saved ? 'Saved!' : 'Save Result'}
+//               </button>
+//             </div>
+//           </div>
+//         )}
+
+//         {/* Message */}
+//         {message && (
+//           <div style={messageStyle(message.includes('success'))}>
+//             {message}
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default BMICalculator;

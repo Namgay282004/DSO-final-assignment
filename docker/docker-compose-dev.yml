@@ -10,7 +10,7 @@ services:
       # PGDATA: /data/postgres
     volumes:
       # Where our data will be persisted
-      - database-data:/data/postgres
+      - postgres_data:/var/lib/postgresql/data
       # - ./config:/app/config
     ports:
       # <Port exposed> : <Port running inside container>
